@@ -1,0 +1,58 @@
+function parcial(cadena){
+    var i = 0;
+    var cantidadPalabras = 0;
+    var signoPesos = 0;
+    var nuevaCadena = '';
+    var palabrasU = 0;
+    var funcionT = 0;
+    cadena=cadena.toLowerCase()
+    while( i < cadena.length){
+        while(cadena[i] == ' '){
+            i++
+        }
+        if(cadena.includes('$')){
+            signoPesos=1;
+        }
+        while(cadena[i] !=' ' && i < cadena.length){
+            while(cadena[i] == ' '){
+                i++}
+            while(cadena[i] != ' ' && i < cadena.length){
+                i++}
+            cantidadPalabras++
+        }
+        i++
+    }
+    if(cantidadPalabras >= 3){
+        funcionT = 1;
+    }
+    i=0;
+    var pos = cadena.indexOf('$')
+    nuevaCadena=cadena.slice(pos)
+    nuevaCadena=nuevaCadena.trim()
+    while(i < nuevaCadena.length){
+        while(nuevaCadena[i] ==' ' ){
+            i++
+        }
+        var palabra = '';
+        while(nuevaCadena[i] != ' ' && i < nuevaCadena.length){
+            palabra=palabra+nuevaCadena[i]
+            i++
+        }
+        while(i < nuevaCadena.length){
+            if(nuevaCadena[i] == ' '){
+                if(nuevaCadena[i + 1] == 'u'){
+                    palabrasU = 1;
+                }
+            }
+            i++
+        }
+        i++
+    }
+    if(funcionT+signoPesos+palabrasU == 3){
+        return('true')
+    }else{
+        return('false')
+    }
+    
+}
+console.log(parcial('Será un melodrama vulgar$ un unicornio'))
