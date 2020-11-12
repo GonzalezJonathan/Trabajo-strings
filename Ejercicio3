@@ -1,0 +1,58 @@
+let comercio = new Array(4);
+for( let f=0; f < comercio.length;f++){
+    comercio[f] = new Array(3)
+}
+
+comercio[0] =['arroz', 10, 15];
+comercio[1] =['azucar',	5, 8];
+comercio[2] =['yerba', 15, 9];
+comercio[3] =['agua', 10, 7];
+
+
+let ventas = new Array(4);
+for(let f=0; f < ventas.length;f++){
+    ventas[f]= new Array(2)
+}
+
+ventas[0]=['arroz', 5];
+ventas[1]=['azucar', 6];
+ventas[2]=['yerba',	4];
+ventas[3]=['agua', 5];
+
+function resumen(matriz){
+    for(let f=0; f < matriz.length; f++){
+        if(matriz[f][2] <= matriz[f][1]){
+            console.log('El producto '+matriz[f][0]+' necesita reponer stock');
+        }
+        else{
+             console.log('El producto '+matriz[f][0]+' no necesita reponer stock');   
+        }
+    }
+}
+
+function promocion(venta,matriz){
+    let valores=[];
+    let promo=[]
+    for(let f=0; f<venta.length;f++){
+        for(let c=1; c<venta[1].length;c++){
+            promo.push((venta[f][1])*2)
+        }
+    }
+    console.log(promo)
+    for(let f=0; f<matriz.length;f++){
+        for(let c=2; c<matriz[2].length;c++){
+            valores.push((matriz[f][2]))
+        }
+    }
+    console.log(valores)
+    for(let i=0;i<valores.length;i++){
+        if(valores[i] > promo[i]){
+            console.log('El producto: '+ventas[i][0]+' esta disponible para una promocion')
+        }
+        
+    }
+}
+
+
+resumen(comercio)
+promocion(ventas,comercio)
