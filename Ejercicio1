@@ -1,0 +1,53 @@
+let alumnos = new Array(5);
+for( let f=0; f < alumnos.length;f++){
+    alumnos[f] = new Array(4)
+}
+
+alumnos[0]=[1, 8, 8, 8];
+alumnos[1]=[23, 5, 6, 6];
+alumnos[2]=[3, 7, 7, 4];
+alumnos[3]=[42,	6, 7, 6];
+alumnos[4]=[14,	7, 7, 7];
+
+function promedioAlumno(matriz){
+    let promedios=[];
+    let sumaNotas=[];
+    for(let f=0; f < matriz.length;f++){
+        let suma=0;
+        for(let c=1;c < matriz[1].length;c++){
+            suma=suma + parseFloat(matriz[f][c])
+        }
+        sumaNotas.push(suma)
+    }
+    for(let i=0;i < sumaNotas.length;i++){
+        promedios.push(sumaNotas[i]/3)
+        console.log('El alumno: '+(i+1)+' tuvo un promedio de: '+promedios[i])
+    }
+    return promedios
+}
+function mayor6(matriz){
+    for(let f=0; f<matriz.length;f++){
+        for(let c=1;c < matriz[1].length;c++){
+            if(matriz[f][c] >= 6){
+                console.log('El alumno '+(f+1)+' aprobó el parcial N° '+c+' con la nota '+matriz[f][c])
+            }
+            else if(matriz[f][c] < 6){
+                console.log('El alumno '+(f+1)+' desaprobó el parcial N° '+c+' con la nota '+matriz[f][c])
+            }
+        }
+    }
+}
+function condicionFinal(matriz){
+    let promedios=promedioAlumno(matriz)
+    let nombres=['Gonzalez, Alberto','Perez, Juan','Ortigoza, Roberto','Espeche, Sol','Alcaraz, Bruno'];
+    for(let f=0;f<matriz.length;f++){
+        if((promedios[f] >= 6)&&(matriz[f][1] >=6)&&(matriz[f][2] >=6)&&(matriz[f][3] >=6)){
+            console.log('N° legajo: '+matriz[f][0]+' Apellido y Nombre: '+nombres[f]+', Estado: Regular')
+        }else{
+            console.log('N° legajo: '+matriz[f][0]+' Apellido y Nombre: '+nombres[f]+', Estado: Libre')
+        }
+    }
+}
+promedioAlumno(alumnos);
+mayor6(alumnos); 
+condicionFinal(alumnos);
