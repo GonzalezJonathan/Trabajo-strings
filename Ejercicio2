@@ -1,0 +1,64 @@
+let alumnos = new Array(5);
+for( let f=0; f < alumnos.length;f++){
+    alumnos[f] = new Array(9)
+}
+alumnos[0]=['Gonzalez alberto',	1, 8, 8, 8,	9, 6, 7, 6,	9];
+alumnos[1]=['Perez Juan', 23, 5, 6, 6, 0, 6, 7, 6, 7];
+alumnos[2]=['Ortigoza Roberto', 3, 5, 5, 5,	5, 5, 5, 5, 8];
+alumnos[3]=['Espeche sol', 42, 5, 5, 5,	5, 5, 5, 6,	7];
+alumnos[4]=['Alcaraz Bruno', 14, 7,	7, 7, 5, 5,	0, 6, 7];
+
+function informeGeneral(matriz){
+    let boletin =[] // aca almaceno la cantida de materias aprobadas por alumno
+    let estado=[]
+    for(let f=0; f < matriz.length;f++){
+        var cantidadAprobadas=0;
+        for(let c=2;c < matriz[2].length;c++){
+            if(matriz[f][c] >= 6){
+                cantidadAprobadas++
+            }
+            
+        }
+        boletin.push(cantidadAprobadas)
+    }
+    for(let i=0;i < boletin.length;i++){
+        estado.push((boletin[i]*100)/8)
+    }
+    for(let x=0;x < estado.length;x++){
+        if(estado[x] >= 60){
+            console.log('El alumno: '+matriz[x][0]+', esta en estado regular'+' con un porcentaje de aprobacion de: %'+estado[x])
+        }
+        if(estado[x] >= 20 && estado[x] < 60){
+            console.log('El alumno: '+matriz[x][0]+', esta en estado espera'+' con un porcentaje de aprobacion de: %'+estado[x])
+        }
+        if(estado[x] < 20){
+            console.log('El alumno: '+matriz[x][0]+', esta en estado pasivo'+' con un porcentaje de aprobacion de: %'+estado[x])
+        } 
+    }
+}
+function promedioAlumno(matriz){
+    let promedios=[];
+    let sumaNotas=[];
+    for(let f=0; f < matriz.length;f++){
+        let suma=0;
+        for(let c=2;c < matriz[2].length;c++){
+            suma=suma + parseFloat(matriz[f][c])
+        }
+        sumaNotas.push(suma)
+    }
+    for(let i=0;i < sumaNotas.length;i++){
+        promedios.push(sumaNotas[i]/8)
+        console.log('El alumno: '+(matriz[i][0])+' tuvo un promedio de: '+promedios[i]) 
+    }
+    return promedios
+}
+function promedioHistorico(promedios,nota){
+    for(let i=0; i < promedios.length; i++){
+        if(promedios[i] > nota){
+            console.log('El alumno:  supero el promedio historico con un promedio de: '+promedios[i])
+        }
+    }
+}
+informeGeneral(alumnos);
+promedioAlumno(alumnos);
+promedioHistorico(promedioAlumno(alumnos),7)
