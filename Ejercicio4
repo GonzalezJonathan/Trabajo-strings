@@ -1,0 +1,36 @@
+let comercio = new Array(4)
+for(let f=0; f < comercio.length; f++){
+    comercio[f]=new Array(3)
+}
+comercio[0]=[1312, 30, 50];
+comercio[1]=[2065, 34, 40];
+comercio[2]=[1010, 100,	100];
+comercio[3]=[3035, 225,	35];
+
+function subTotal(matriz){
+    let resultado=[];
+    for(let f=0; f<matriz.length;f++){
+        let operacion=0;
+        for(let c=1;c<matriz[1].length;c++){
+            operacion=(matriz[f][1]*matriz[f][2])
+        }
+        resultado.push(operacion)
+        console.log('El sub total del producto: '+matriz[f][0]+' fue de: $'+resultado[f])
+    }
+    return resultado
+}
+function total(sub,matriz){
+    let sumaTotatl=0;
+    let productoTotal=0;
+    for(let f=0; f<matriz.length;f++){
+        for(let c=2; c<matriz[2].length;c++){
+            sumaTotatl=sumaTotatl+ parseFloat(matriz[f][c])
+        }
+    }
+    for(let i=0;i<sub.length;i++){
+        productoTotal=productoTotal+sub[i]
+    }
+    console.log('La cantidad de productos vendidos fue: '+sumaTotatl+', con un ingreso total de: $'+productoTotal)
+}
+subTotal(comercio);
+total(subTotal(comercio),comercio);
